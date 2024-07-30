@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './SearchForm.css';
 import JoblyApi from './JoblyApi';
 
-function SearchForm({fields, setCompanies, setIsLoading}){
+function SearchForm({fields, setCompanies}){
     console.log('rerendering SearchForm');
     const initialState = {
         name: '',

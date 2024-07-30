@@ -1,5 +1,4 @@
 BASIC SITE
-19) Create and style company list page
 18) Create and style company detail page
     - create and style job card component
     - create and style Apply button (no functionality yet)

@@ -5,7 +5,6 @@ import JoblyApi from './JoblyApi';
 import './CompanyList.css';
 
 function CompanyList(){
-    console.log('rerendering CompanyList');
     const [isLoading, setIsLoading] = useState(true);
     const [companies, setCompanies] = useState([]);
 
@@ -33,7 +32,7 @@ function CompanyList(){
         <div className="CompanyList">
             <div>
                 <div className='CompanyList-search'>
-                    <SearchForm setCompanies={setCompanies} setIsLoading={setIsLoading} fields={['name', 'minEmployees', 'maxEmployees']}/>
+                    <SearchForm setCompanies={setCompanies} fields={['name', 'minEmployees', 'maxEmployees']}/>
                 </div>
                 <div className='CompanyList-text'>
                     {companies.map(company => (
