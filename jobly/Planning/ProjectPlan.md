@@ -1,6 +1,5 @@
 BASIC SITE
 18) Create and style company detail page
-    - create and style Apply button (no functionality yet)
 16) Make job list page
     - create and style job list component
     - create and style search bar component

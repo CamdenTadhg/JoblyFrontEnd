@@ -1,0 +1,10 @@
+button{
+    float: right;
+    background-color: #E5C1BD;
+    padding: 5px 5px;
+    border-radius: 5px;
+}
+
+button:disabled{
+    opacity: 0.5
+}
