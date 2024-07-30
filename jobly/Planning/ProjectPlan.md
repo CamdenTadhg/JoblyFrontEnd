@@ -1,5 +1,4 @@
-21) Create and style navbar
-20) Create and style home page
+BASIC SITE
 19) Create and style company list page
     - create and style search bar component
     - create and style company card component
@@ -9,6 +8,7 @@
     - create and style Apply button
 16) Make job list page
     - make sure it is able to filter (as you type)
+USER FUNCTIONALITY
 14) Make forms for logging in and signing up
 13) If not logged in, show login and signup
 12) If logged in, show logout and username
@@ -21,40 +21,19 @@
 6) Create profile page
 5) Allow user to edit profile and update site
     - create listing of jobs applied for on profile site using job card
+JOB APPLICATIONS
 4) Allow job application functionality
     Button to apply if you haven't applied yet
     Shouldn't show if you have already applied
     Should retain that information across pages during your session
     Should retain that information between sessions (pull it from the database)
+FINAL STEPS
 3) Write tests
 1) Deploy on Render
     Set up database on Supabase
     Deploy backend on Render
     Deploy frontend on Render
 
-## **Step Three: Make Your Routes File**
-
-Look at the working demo to see the routes you’ll need:
-
-***/ :*** Homepage — just a simple welcome message
-
-***/companies :*** List all companies
-
-***/companies/apple :*** View details of this company
-
-***/jobs :*** List all jobs
-
-***/login :*** Login/signup
-
-***/signup :*** Signup form
-
-***/profile :*** Edit profile page
-
-Make your routes file that allows you to navigate a skeleton of your site. Make simple placeholder components for each of the feature areas.
-
-Make a navigation component to be the top-of-window navigation bar, linking to these different sections.
-
-When you work on authentication later, you need to add more things here. But for now, you should be able to browse around the site and see your placeholder components.
 
 ## **Step Four: Companies & Company Detail**
 
@@ -132,12 +111,7 @@ On the job info (both on the jobs page, as well as the company detail page), add
 
 We’re going to use Render to deploy our backend and frontend! Before you continue, make sure you have two folders, each with their own git repository (and make sure you do not have one inside of another!)
 
-Your folder structure might look something like this
 
-```jsx
-jobly-backend
-jobly-frontend
-```
 
 It’s important to have this structure because we need two different deployments, one for the front-end and one for the backend.
 
@@ -147,30 +121,6 @@ It’s important to have this structure because we need two different deployment
 
 Ensure the app works without error on your local computer.
 
-## **The Database ( for ElephantSQL)**
-
-You must have created and seeded the db on your computer. This should be part of making sure the app works locally.
-
-1. Create account at [ElephantSQL](https://www.elephantsql.com/) using GitHub
-2. Create a “Tiny Turtle” (free) instance
-3. Select region: *US-West-1* *(even if others are closer to you)*
-4. If you get an error selecting *US-West-1*, pick *US-East-1*
-5. Any unique name will do
-6. Plan should be Tiny Turtle (Free)
-7. Confirm and create
-8. Click on your new instance and copy the URL
-
-Back in your terminal seed the db with
-
-```jsx
-*pg_dump -O jobly | psql (url you copied here)*
-```
-
-Check on your database with:
-
-```jsx
-*psql (url you copied here)*
-```
 
 ## **The Database (for Supabase)**
 

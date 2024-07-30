@@ -1,12 +1,17 @@
 .NavBar{
     background-color: #5E747F;
     font-weight: bold;
-    color: black;
+    color: white;
 }
 
 .NavBar a{
-    color: black;
-    margin: 7px;
+    color: white;
+    margin: 0px 10px;
+    text-decoration: none;
+}
+
+.navbar-center{
+    padding-left: 8vw
 }
 
 /* E5C1BD, D2D0BA, B6BE9C, 7B9E87 */

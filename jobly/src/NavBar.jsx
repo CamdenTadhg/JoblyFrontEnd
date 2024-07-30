@@ -9,11 +9,11 @@ function NavBar() {
         <nav className='NavBar'>
             <Navbar>
                 <NavLink to='/' className='navbar-brand'>Jobly</NavLink>
-                <Nav horizontal='start'>
+                <Nav horizontal='center' className='navbar-center'>
                     <NavLink to='/companies' className='nav-item'>Companies</NavLink>
                     <NavLink to='/jobs' className='nav-item'>Jobs</NavLink>
                 </Nav>
-                <Nav horizontal='end'>
+                <Nav>
                     <NavLink to='/profile'>Profile</NavLink>
                     <NavLink to='/login'>Login</NavLink>
                     <NavLink to='/signup'>Signup</NavLink>
