@@ -1,4 +1,3 @@
-22) Create Routes file with all routes
 21) Create and style navbar
 20) Create and style home page
 19) Create and style company list page
@@ -12,7 +11,8 @@
     - make sure it is able to filter (as you type)
 14) Make forms for logging in and signing up
 13) If not logged in, show login and signup
-12) If logged in, show username and logout
+12) If logged in, show logout and username
+  - add logging out functionality
 11) Homepage shows different messages based on log in state
 10) Figure out token functionality 
 9) Add local storage to keep the token in simple state

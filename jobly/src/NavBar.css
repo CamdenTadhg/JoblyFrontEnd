@@ -1,0 +1,12 @@
+.NavBar{
+    background-color: #5E747F;
+    font-weight: bold;
+    color: black;
+}
+
+.NavBar a{
+    color: black;
+    margin: 7px;
+}
+
+/* E5C1BD, D2D0BA, B6BE9C, 7B9E87 */
