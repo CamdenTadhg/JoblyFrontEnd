@@ -1,4 +1,20 @@
-:root{
-    background-color: #D2D0BA;
-    height: 100vh;
+.JobList-search{
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.JobList-text-loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.JobList-jobs{
+    position: absolute;
+    top: 175px;
+    left: 50%;
+    transform: translate(-50%);
 }

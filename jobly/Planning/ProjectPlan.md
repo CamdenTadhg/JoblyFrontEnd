@@ -1,10 +1,10 @@
-BASIC SITE
-18) Create and style company detail page
+THE EASY PART
 16) Make job list page
-    - create and style job list component
-    - create and style search bar component
+    - figure out how to make the job card slightly different on this page
+    - make sure search bar component works correctly in varied setup
     - make sure it is able to filter (as you type)
-USER FUNCTIONALITY
+15) Is there a way to bump up isloading to reduce duplication? 
+THE HARDER PART
 14) Make forms for logging in and signing up
 13) If not logged in, show login and signup
 12) If logged in, show logout and username
@@ -17,13 +17,12 @@ USER FUNCTIONALITY
 6) Create profile page
 5) Allow user to edit profile and update site
     - create listing of jobs applied for on profile site using job card
-JOB APPLICATIONS
 4) Allow job application functionality
     Button to apply if you haven't applied yet
     Should show Applied if you've already applied
     Should retain that information across pages during your session
     Should retain that information between sessions (pull it from the database)
-FINAL STEPS
+THE REALLY HARD PART
 3) Write tests
 1) Deploy on Render
     Set up database on Supabase

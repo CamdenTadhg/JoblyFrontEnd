@@ -7,6 +7,7 @@
 
 .CompanyDetail-detail{
     position: absolute;
+    top: 65px;
     left: 50%;
     transform: translate(-50%);
     margin: 10px;

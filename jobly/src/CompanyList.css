@@ -12,5 +12,12 @@
     transform: translate(-50%, -50%);
 }
 
+.CompanyList-search{
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
 
 

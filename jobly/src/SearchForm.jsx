@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './SearchForm.css';
 import JoblyApi from './JoblyApi';
 
-function SearchForm({fields, setCompanies}){
+function SearchForm({fields, setData}){
     console.log('rerendering SearchForm');
     const initialState = {
         name: '',
@@ -29,7 +29,7 @@ function SearchForm({fields, setCompanies}){
         console.log('use effect called');
         async function getFilteredCompanies(data){
             let filteredCompanies = await JoblyApi.getFilteredCompanies(data);
-            setCompanies(filteredCompanies);
+            setData(filteredCompanies);
         }
         getFilteredCompanies(formData);
     }, [formData])

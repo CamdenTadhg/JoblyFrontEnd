@@ -6,8 +6,8 @@ import './NavBar.css';
 
 function NavBar() {
     return (
-        <nav className='NavBar'>
-            <Navbar>
+        <nav>
+            <Navbar className="fixed-top NavBar">
                 <NavLink to='/' className='navbar-brand'>Jobly</NavLink>
                 <Nav horizontal='center' className='navbar-center'>
                     <NavLink to='/companies' className='nav-item'>Companies</NavLink>

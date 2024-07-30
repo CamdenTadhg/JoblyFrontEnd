@@ -32,7 +32,7 @@ function CompanyList(){
         <div className="CompanyList">
             <div>
                 <div className='CompanyList-search'>
-                    <SearchForm setCompanies={setCompanies} fields={['name', 'minEmployees', 'maxEmployees']}/>
+                    <SearchForm setData={setCompanies} fields={['name', 'minEmployees', 'maxEmployees']}/>
                 </div>
                 <div className='CompanyList-text'>
                     {companies.map(company => (
