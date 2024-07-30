@@ -1,5 +1,4 @@
 22) Create Routes file with all routes
-    //create dummy components for all components
 21) Create and style navbar
 20) Create and style home page
 19) Create and style company list page

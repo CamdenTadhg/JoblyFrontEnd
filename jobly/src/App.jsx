@@ -6,7 +6,7 @@ import CompanyList from './CompanyList';
 import CompanyDetail from './CompanyDetail';
 import JobList from './JobList';
 import Profile from './Profile';
-import NavBar from './Navbar';
+import NavBar from './NavBar';
 import Home from './Home';
 
 function App() {
