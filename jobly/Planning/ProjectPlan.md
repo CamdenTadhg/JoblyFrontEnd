@@ -1,162 +1,37 @@
-26) Set up frontend git
-25) Create jobly database
-24) Start up the backend on port 3001
-23) Look at backend routes
-22) Look at demo site
-21) Design component hierarchy
-20) Make JoblyAPI file using api.js file to interact with database
-19) Create Routes file with 7 routes
-18) Make a navbar
-17) Flesh out components for showing companies list
-16) Flesh out components for showing companies detail
-15) Create search functionality for companies
-14) Flesh out components for showing all jobs list
-13) Add jobs card to companies detail page
-12) Make forms for logging in and signing up
-11) If not logged in, show login and signup
-10) If logged in, show username and logout
-9) Homepage shows different messages based on log in state
-8) Figure out token functionality 
-7) Add local storage to keep the token in simple state
-6) Write useLocalStorage hook
-5) Protect routes from logged out users
-4) Create profile page
-3) Allow user to edit profile and update site
-2) Allow job application functionality
+22) Create Routes file with all routes
+    //create dummy components for all components
+21) Create and style navbar
+20) Create and style home page
+19) Create and style company list page
+    - create and style search bar component
+    - create and style company card component
+    - make sure it is able to filter (as you type)
+18) Create and style company detail page
+    - create and style job card component
+    - create and style Apply button
+16) Make job list page
+    - make sure it is able to filter (as you type)
+14) Make forms for logging in and signing up
+13) If not logged in, show login and signup
+12) If logged in, show username and logout
+11) Homepage shows different messages based on log in state
+10) Figure out token functionality 
+9) Add local storage to keep the token in simple state
+8) Write useLocalStorage hook
+7) Protect routes from logged out users
+6) Create profile page
+5) Allow user to edit profile and update site
+    - create listing of jobs applied for on profile site using job card
+4) Allow job application functionality
     Button to apply if you haven't applied yet
     Shouldn't show if you have already applied
+    Should retain that information across pages during your session
+    Should retain that information between sessions (pull it from the database)
+3) Write tests
 1) Deploy on Render
     Set up database on Supabase
     Deploy backend on Render
     Deploy frontend on Render
-
-
-
-    
-- Re-create the ***jobly*** database from the backend solution using the ***jobly.sql*** file.    
-- ~~Create a new React project.~~
-- It may help to take a few minutes to look over the backend to remind yourself of the most important routes.
-- Start up the backend. We have it starting on port 3001, so you can run the React front end on 3000.
-
-## **Step One: Design Component Hierarchy**
-
-It will help you first get a sense of how this app should work.
-
-We have a demo running at [http://joelburton-jobly.surge.sh](http://joelburton-jobly.surge.sh/). Take a tour and note the features.
-
-Please register as a new user to explore the site.
-
-A big skill in learning React is to learn to design component hierarchies.
-
-It can be very helpful to sketch out a hierarchy of components, especially for larger apps, like Jobly.
-
-As an example of this kind of diagram, here’s one for a sample todo list application:
-
-![graphviz-f326ee4a0d66fa61317b9b55bd593f7830f69ae4.svg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/773160a6-59b2-4b3d-8d3d-94e311a88554/graphviz-f326ee4a0d66fa61317b9b55bd593f7830f69ae4.svg)
-
-Once you’ve done this, it’s useful to think about the props and state each component will need. Deciding *where*individual state is needed is one of the most critical things to figure out.
-
-Here’s our simple todo list application, with component state and passed props:
-
-!http://curric.rithmschool.com/springboard/exercises/react-jobly/_images/graphviz-6f2756a48bde5c925dc2169d60641ba078297d21.svg
-
-We’re showing these to you with diagrams, and it can be helpful to do this with pen and paper or using a whiteboard.
-
-You can also write this out as an indented list:
-
-```
-**App**                          General page wrapper
-	no props or stage
-
-	**TodoList**                   Manages todos, shows form &
-		state=todos                list of todos
-
-		**NewTodoForm**              Manages form data, submits
-			state=formData           new todo to parent
-			props=addTodo()
-
-		**Todo**                     One rendered for each todo,
-			props=title, descrip     pure presentational
-```
-
-Take time to diagram what components you think you’ll need in this application, and what the most important parts of state are, and where they might live.
-
-Notice how some things are common: the appearance of a job on the company detail page is the same as on the jobs page. You should be able to re-use that component.
-
-**Spend time here.** This may be one of the most important parts of this exercise.
-
-## **Step Two: Make an API Helper**
-
-Many of the components will need to talk to the backend (the company detail page will need to load data about the company, for example).
-
-It will be messy and hard to debug if these components all had AJAX calls buried inside of them.
-
-Instead, make a single ***JoblyAPI*** class, which will have helper methods for centralizing this information. This is conceptually similar to having a model class to interact with the database, instead of having SQL scattered all over your routes.
-
-Here’s a starting point for this file:
-
-*api.js*
-
-```jsx
-import axios from "axios";
-
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
-
-/** API Class.
- *
- * Static class tying together methods used to get/send to to the API.
- * There shouldn't be any frontend-specific stuff here, and there shouldn't
- * be any API-aware stuff elsewhere in the frontend.
- *
- */
-
-class JoblyApi {
-  // the token for interactive with the API will be stored here.
-  static token;
-
-  static async request(endpoint, data = {}, method = "get") {
-    console.debug("API Call:", endpoint, data, method);
-
-    //there are multiple ways to pass an authorization token, this is how you pass it in the header.
-    //this has been provided to show you another way to pass the token. you are only expected to read this code for this project.
-    const url = `${BASE_URL}/${endpoint}`;
-    const headers = { Authorization: `Bearer ${JoblyApi.token}` };
-    const params = (method === "get")
-        ? data
-        : {};
-
-    try {
-      return (await axios({ url, method, data, params, headers })).data;
-    } catch (err) {
-      console.error("API Error:", err.response);
-      let message = err.response.data.error.message;
-      throw Array.isArray(message) ? message : [message];
-    }
-  }
-
-  // Individual API routes
-
-  /** Get details on a company by handle. */
-
-  static async getCompany(handle) {
-    let res = await this.request(`companies/${handle}`);
-    return res.company;
-  }
-
-  // obviously, you'll add a lot here ...
-}
-
-// for now, put token ("testuser" / "password" on class)
-JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
-```
-
-You won’t build authentication into the front end for a while—but the backend needs a token to make almost all API calls. Therefore, for now, we’ve hard-coded a token in here for the user “testuser”, who is also in the sample data.
-
-(Later, once you start working on the login form, you may find it useful to log in as “testuser”. Their password is “password”).
-
-You can see a sample API call — to ***getCompany(handle)***. As you work on features in the front end that need to use backend APIs, add to this class.
 
 ## **Step Three: Make Your Routes File**
 
