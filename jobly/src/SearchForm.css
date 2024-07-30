@@ -1,0 +1,26 @@
+.SearchForm{
+    padding: 5px;
+    width: 30vw;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.SearchForm label{
+    margin:5px;
+    color: white;
+}
+
+.SearchForm input{
+    margin: 0px 3px;
+    width: 20vw;
+    border-radius: 5px;
+    border: white;
+    float: right;
+}
+
+.input-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -1,12 +1,12 @@
 import React from 'react';
-import SearchBar from './SearchBar';
+import SearchForm from './SearchForm';
 import JobCard from './JobCard';
 
 function JobList(){
     return(
         <div>
             I am the job list page.
-            <SearchBar />
+            <SearchForm />
             <JobCard />
         </div>
     )

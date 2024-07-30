@@ -1,9 +1,3 @@
-.Home{
-    background-image: repeating-linear-gradient(#B6BE9C,#D2D0BA, #7B9E87);
-    height: 90vh;
-    text-align: center;
-}
-
 .Home-text{
     position: absolute;
     top: 50%;
@@ -15,4 +9,10 @@
     background-color: #5E747F;
     color: white;
     margin: 3px;
+}
+
+.Home{
+    background-image: repeating-linear-gradient(#B6BE9C,#D2D0BA, #7B9E87);
+    height: 100vh;
+    text-align: center;
 }

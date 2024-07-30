@@ -1,12 +1,11 @@
 BASIC SITE
 19) Create and style company list page
-    - create and style search bar component
-    - create and style company card component
-    - make sure it is able to filter (as you type)
 18) Create and style company detail page
     - create and style job card component
-    - create and style Apply button
+    - create and style Apply button (no functionality yet)
 16) Make job list page
+    - create and style job list component
+    - create and style search bar component
     - make sure it is able to filter (as you type)
 USER FUNCTIONALITY
 14) Make forms for logging in and signing up
@@ -24,7 +23,7 @@ USER FUNCTIONALITY
 JOB APPLICATIONS
 4) Allow job application functionality
     Button to apply if you haven't applied yet
-    Shouldn't show if you have already applied
+    Should show Applied if you've already applied
     Should retain that information across pages during your session
     Should retain that information between sessions (pull it from the database)
 FINAL STEPS
@@ -33,6 +32,12 @@ FINAL STEPS
     Set up database on Supabase
     Deploy backend on Render
     Deploy frontend on Render
+
+/* pink: #E5C1BD, 
+tan: #D2D0BA
+blue: #5E747F
+yellow: B6BE9C
+green: 7B9E87 */
 
 
 ## **Step Four: Companies & Company Detail**

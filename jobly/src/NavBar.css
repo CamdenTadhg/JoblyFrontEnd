@@ -10,8 +10,15 @@
     text-decoration: none;
 }
 
+.NavBar a.active{
+    color: white;
+}
+
+.NavBar a:hover{
+    color: white;
+}
+
 .navbar-center{
     padding-left: 8vw
 }
 
-/* E5C1BD, D2D0BA, B6BE9C, 7B9E87 */

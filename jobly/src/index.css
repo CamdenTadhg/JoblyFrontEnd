@@ -1,5 +1,13 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 :root{
-    background-image: repeating-linear-gradient(#B6BE9C,#D2D0BA, #7B9E87);
-    height: 100vh;
-    text-align: center;
+    background-color: #7B9E87;
+    background-size: cover;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
 }
