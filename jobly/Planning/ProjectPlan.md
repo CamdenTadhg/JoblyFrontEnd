@@ -1,8 +1,4 @@
 THE EASY PART
-16) Make job list page
-    - figure out how to make the job card slightly different on this page
-    - make sure search bar component works correctly in varied setup
-    - make sure it is able to filter (as you type)
 15) Is there a way to bump up isloading to reduce duplication? 
 THE HARDER PART
 14) Make forms for logging in and signing up

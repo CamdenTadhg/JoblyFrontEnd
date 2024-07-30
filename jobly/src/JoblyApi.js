@@ -56,7 +56,6 @@ class JoblyApi {
 
   /** Get a filtered list of companies. searchFilters = {minEmployees, maxEmployees, name} */
   static async getFilteredCompanies(searchFilters) {
-    console.log('filtered api call started')
     let {minEmployees, maxEmployees, name} = searchFilters;
     let url = 'companies?';
     if (minEmployees) {
@@ -98,7 +97,7 @@ class JoblyApi {
     if(title) {
       url= url + `title=${title}`;
     }
-    let res = await this.request(`jobs?minSalary=${salary}&hasEquity=${equity}&title=${title}`);
+    let res = await this.request(url);
     return res.jobs;
   }
 

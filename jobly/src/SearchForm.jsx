@@ -2,12 +2,14 @@ import React, {useEffect, useState} from 'react';
 import './SearchForm.css';
 import JoblyApi from './JoblyApi';
 
-function SearchForm({fields, setData}){
-    console.log('rerendering SearchForm');
+function SearchForm({fields, setData, type}){
     const initialState = {
         name: '',
         minEmployees: '',
-        maxEmployees: ''
+        maxEmployees: '',
+        title: '',
+        salary: '',
+        equity: false,
     };
     const [formData, setFormData] = useState(initialState);
 
@@ -17,21 +19,35 @@ function SearchForm({fields, setData}){
 
     //handle change to form entries, searching as the user types
     const handleChange = (event) => {
-        console.log('FORM DATA CHANGED')
         const {name, value} = event.target;
-        setFormData(fData => ({
-            ...fData,
-            [name]: value
-        }));
+        if (name === 'equity'){
+            setFormData(fData => ({
+                ...fData,
+                equity: event.target.checked
+            }));
+        } else {
+            setFormData(fData => ({
+                ...fData,
+                [name]: value
+            }));
+        }
     };
 
     useEffect(() => {
-        console.log('use effect called');
-        async function getFilteredCompanies(data){
-            let filteredCompanies = await JoblyApi.getFilteredCompanies(data);
-            setData(filteredCompanies);
+        async function getFilteredData(data){
+            console.log(data);
+            let filteredData;
+            if (type === 'company'){
+                filteredData = await JoblyApi.getFilteredCompanies(data);
+                console.log(filteredData)
+            }
+            if (type ==='job'){
+                filteredData = await JoblyApi.getFilteredJobs(data);
+                console.log(filteredData)
+            }
+            setData(filteredData);
         }
-        getFilteredCompanies(formData);
+        getFilteredData(formData);
     }, [formData])
 
     return(
@@ -40,7 +56,9 @@ function SearchForm({fields, setData}){
                 {fields.map(field => (
                     <div key={field} className='input-item'>
                         <label key={field} htmlFor={field}>{capitalize(field)}:</label>
-                        <input name={field} id={field} value={formData[field]} onChange={handleChange}/>
+                        {(field === 'equity') ? 
+                        <input name={field} id={field} value={formData[field]} onChange={handleChange} type='checkbox'/>:
+                        <input name={field} id={field} value={formData[field]} onChange={handleChange}/> }
                     </div>
                 ))}
             </form>

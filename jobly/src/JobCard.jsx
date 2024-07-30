@@ -3,16 +3,15 @@ import ApplyButton from './ApplyButton';
 import {Card, CardTitle, CardBody, CardText} from 'reactstrap';
 import './JobCard.css';
 
-function JobCard({title, salary, equity, applied}){
+function JobCard({title, salary, equity, company, applied}){
     return(
         <Card className="JobCard-card">
             <CardBody>
                 <CardTitle><b>{title}</b></CardTitle>
-                <CardText>
-                    <div>Salary: {salary}</div>
-                    <div>Equity: {equity}</div>
-                    <ApplyButton applied={applied}/>
-                </CardText>
+                {company? <div className='JobCard-company'>{company}</div>: null}
+                <div>Salary: {salary}</div>
+                <div>Equity: {equity ? 'YES': 0}</div>
+                <ApplyButton applied={applied}/>
             </CardBody>
 
         </Card>

@@ -11,8 +11,10 @@ function JobList(){
     //get a list of jobs from the API and set state appropriately
     useEffect(() => {
         async function getJobs() {
+            console.log('starting getJobs')
             setIsLoading(true);
             let loadJobs = await JoblyApi.getAllJobs();
+            console.log(loadJobs)
             setJobs(loadJobs);
             setIsLoading(false);
         }
@@ -29,11 +31,11 @@ function JobList(){
     return(
         <div>
             <div className='JobList-search'>
-                <SearchForm fields={['title', 'salary', 'equity']} />
+                <SearchForm fields={['title', 'salary', 'equity']} setData={setJobs} type='job' />
             </div>
             <div className='JobList-jobs'>
                 {jobs.map(job => (
-                    <JobCard title={job.title} salary={job.salary} equity={job.equity}/>
+                    <JobCard title={job.title} salary={job.salary} equity={Boolean(job.equity)} company={job.companyName}/>
                 ))}
             </div>
         </div>
