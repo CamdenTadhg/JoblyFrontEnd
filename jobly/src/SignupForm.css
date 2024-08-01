@@ -1,31 +1,28 @@
-.SearchForm{
-    padding: 5px;
-    width: 30vw;
+.SignupForm{
     position: absolute;
+    top: 65px;
     left: 50%;
     transform: translate(-50%);
-}
-
-.SearchForm label{
-    margin:5px;
-    color: white;
-}
-
-.SearchForm input{
-    margin: 0px 3px;
-    width: 20vw;
+    margin: 10px;
+    padding: 10px;
     border-radius: 5px;
-    border: white;
-    float: right;
+    background-color: white;
+    padding: 15px;
+    width: 25vw;
+}
+
+.SignupForm label{
+    margin:5px;
+}
+
+.SignupForm input{
+    margin: 0px 3px;
+    border-radius: 5px;
+    border: 1px solid black;
 }
 
 .input-item{
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-input[type='checkbox']{
-    height: 25px;
-    float: left;
 }

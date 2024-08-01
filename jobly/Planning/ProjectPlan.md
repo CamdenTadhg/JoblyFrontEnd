@@ -1,14 +1,24 @@
-THE EASY PART
-15) Is there a way to bump up isloading to reduce duplication? 
 THE HARDER PART
-14) Make forms for logging in and signing up
-13) If not logged in, show login and signup
-12) If logged in, show logout and username
-  - add logging out functionality
-11) Homepage shows different messages based on log in state
-10) Figure out token functionality 
-9) Add local storage to keep the token in simple state
-8) Write useLocalStorage hook
+14) Figure out local storage to keep the token in simple state and retrieve it
+13) Write useLocalStorage hook
+12) Make controlled form for signing up
+  - make signing up function in App component
+  - onSubmit, gather data and run function in Signup Component
+  - sign up a new user with login form defaults set to that username and password
+11) Make controlled form for logging in
+  - create form
+  - onChange
+11) Get signup and login working
+  - see if it works
+  - read and understand hint
+10) If not logged in, show login and signup
+  - add conditional logic to links
+  - make it work
+9) If logged in, show logout and username
+  - add logging out functionality to app
+  - add conditional logic to links
+  - make it work
+8) Homepage shows different messages based on log in state
 7) Protect routes from logged out users
 6) Create profile page
 5) Allow user to edit profile and update site
@@ -32,18 +42,6 @@ yellow: B6BE9C
 green: 7B9E87 */
 
 
-## **Step Four: Companies & Company Detail**
-
-Flesh out your components for showing detail on a company, showing the list of all companies, and showing simple info about a company on the list (we called these ***CompanyDetail***, ***CompanyList***, and ***CompanyCard***, respectively —but you might have used different names).
-
-Make your companies list have a search box, which filters companies to those matching the search (remember: there’s a backend endpoint for this!). Do this filtering in the backend — **not** by loading all companies and filtering in the front end!
-
-## **Step Five: Jobs**
-
-Similarly, flesh out the page that lists all jobs, and the “job card”, which shows info on a single job. You can use this component on both the list-all-jobs page as well as the show-detail-on-a-company page.
-
-Don’t worry about the “apply” button for now — you’ll add that later, when there’s authentication for the app.
-
 ## **Step Six: Current User**
 
 This step is tricky. Go slowly and test your work carefully.
@@ -60,27 +58,11 @@ Things to do:
     If someone is logged in, show their username in the navigation, along with a way to log out.
     
 - Have the homepage show different messages if the user is logged in or out.
-- When you get a token from the login and register processes, store that token on the ***JoblyApi*** class, instead of always using the hardcoded test one. You should also store the token in state high up in your hierarchy; this will let use use an effect to watch for changes to that token to kick off a process of loading the information about the new user.
+- When you get a token from the login and register processes, store that token on the ***JoblyApi*** class, instead of always using the hardcoded test one. You should also store the token in state high up in your hierarchy; this will let you use an effect to watch for changes to that token to kick off a process of loading the information about the new user.
 
 Think carefully about where functionality should go, and keep your components as simple as you can. For example, in the ***LoginForm*** component, its better design that this doesn’t handle directly all of the parts of logging in (authenticating via API, managing the current user state, etc). The logic should be more centrally organized, in the ***App*** component or a specialized component.
 
 While writing this, your server will restart often, which will make it tedious to keep typing in on the login and signup forms. A good development tip is to hardcode suitable defaults onto these forms during development; you can remove those defaults later.
-
-### Click on the > for a hint!
-
-Hint on Proceeding — Read After Thinking!
-
-Here’s the strategy we took from our solution:
-
-- Make ***login***, ***signup***, and ***logout*** functions in the ***App*** component.
-    
-    By passing ***login***, ***logout***, and ***signup*** functions down to the login and signup forms and the navigation bar, they’ll be able to call centralized functions to perform these processes.
-    
-- Add ***token*** as a piece of state in ***App***, along with state for the ***currentUser***.
-- Create an effect triggered by a state change of the token: this should call the backend to get information on the newly-logged-in user and store it in the ***currentUser*** state. You will need to decode the token and get the payload with the correct username. **Do not use the jsonwebtoken module to do this, you will encounter errors**. Instead, take a look at the ***jwt-decode*** module.
-- Expose the current user throughout the app with a context provider. This will make it easy to refer to the current app in navigation, on pages, and so on.
-
-This would be an excellent place to use ***useContext***, so you can store the current user’s info high up in your hierarchy, like on the ***App*** component.
 
 ## **Step Seven: Using localStorage and Protecting Routes**
 

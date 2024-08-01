@@ -39,12 +39,14 @@ class JoblyApi {
   /** Login a user and receive back a token. LoginData = {username, password}*/
   static async login(loginData){
     let res = await this.request(`token`, loginData, method='post');
+    JoblyApi.token=res.token;
     return res.token;
   }
 
   /** Signup a user and receive back a token. signupData = {username, password, firstName, lastName, email} */
   static async signup(signupData){
     let res = await this.request(`register`, signupData, method='post');
+    JoblyApi.token = res.token;
     return res.token;
   }
 
