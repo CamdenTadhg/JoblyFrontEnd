@@ -1,26 +1,12 @@
 THE HARDER PART
 8/1
-11) Make controlled form for logging in
-  - create form
-  - onChange
-  - on Submit, gather data and run function in Signup Component
-  - redirect user appropriately
-11) Get signup and login working
-  - see if login works  
+8) Get signup and login working
+  - logout should redirect to home page
   - need solution for duplicate username situation in signup
+  - need solution for bad login information in login
   - see if it retains the token when you reload page (localStorage works)
+  - figure out use effect notes
   - read and understand hint
-
-8/1
-10) If not logged in, show login and signup
-  - add conditional logic to links
-  - make it work
-9) If logged in, show logout and username
-  - add logging out functionality to app
-  - add conditional logic to links
-  - make it work
-8) Homepage shows different messages based on log in state
-7) Protect routes from logged out users
 
 8/2
 6) Create profile page
@@ -28,7 +14,7 @@ THE HARDER PART
     - create listing of jobs applied for on profile site using job card
       - you'll need a new route for this on the backend
 
-8/4-8/5
+8/3
 4) Allow job application functionality
     Button to apply if you haven't applied yet
     Should show Applied if you've already applied
@@ -36,8 +22,8 @@ THE HARDER PART
     Should retain that information between sessions (pull it from the database)
 
 THE REALLY HARD PART
-8/6-8/7
-3) Write tests
+8/4
+2) Write tests
 1) Deploy on Render
     Set up database on Supabase
     Deploy backend on Render

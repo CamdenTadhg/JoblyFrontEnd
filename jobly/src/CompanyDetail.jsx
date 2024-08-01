@@ -20,7 +20,10 @@ function CompanyDetail(){
         getCompany(handle);
     },[]);
 
-    console.log(company);
+    if (!currentUser){
+        return <Navigate to='/'/>
+    }
+
     if (isLoading) {
         return (
             <div className='CompanyDetail'>

@@ -38,7 +38,7 @@ class JoblyApi {
   // Individual API routes
   /** Login a user and receive back a token. LoginData = {username, password}*/
   static async login(loginData){
-    let res = await this.request(`auth/token`, loginData, method='post');
+    let res = await this.request(`auth/token`, loginData, 'post');
     JoblyApi.token=res.token;
     return res.token;
   }

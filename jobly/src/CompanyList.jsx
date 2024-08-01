@@ -1,12 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
+import {Navigate} from 'react-router-dom';
 import SearchForm from './SearchForm';
 import CompanyCard from './CompanyCard';
 import JoblyApi from './JoblyApi';
 import './CompanyList.css';
+import UserContext from './userContext';
 
 function CompanyList(){
+    console.log('rerendering CompanyList')
     const [isLoading, setIsLoading] = useState(true);
     const [companies, setCompanies] = useState([]);
+    const currentUser = useContext(UserContext);
 
     //get the list of companies from the API and set state appropriately
     useEffect(() => {
@@ -19,6 +23,10 @@ function CompanyList(){
         getCompanies();
     }, []);
 
+
+    if (!currentUser){
+        return <Navigate to='/'/>
+    }
 
     if (isLoading) {
         return (

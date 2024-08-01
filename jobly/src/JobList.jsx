@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import SearchForm from './SearchForm';
 import JobCard from './JobCard';
 import JoblyApi from './JoblyApi';
+import {v4 as uuid} from 'uuid';
 import './JobList.css';
 
 function JobList(){
@@ -21,6 +22,10 @@ function JobList(){
         getJobs();
     }, []);
 
+    if (!currentUser){
+        return <Navigate to='/'/>
+    }
+    
     if (isLoading){
         return (
             <div className='JobList'>
@@ -35,7 +40,7 @@ function JobList(){
             </div>
             <div className='JobList-jobs'>
                 {jobs.map(job => (
-                    <JobCard title={job.title} salary={job.salary} equity={Boolean(job.equity)} company={job.companyName}/>
+                    <JobCard key={uuid()} title={job.title} salary={job.salary} equity={Boolean(job.equity)} company={job.companyName}/>
                 ))}
             </div>
         </div>
