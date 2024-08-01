@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
@@ -14,15 +14,16 @@ import useLocalStorage from './hooks/useLocalStorage';
 
 function App() {
   const [token, setToken] = useLocalStorage('token', '');
+  console.log('token = ', token);
 
-  const signUp = async (data) => {
-    token = await JoblyApi.signup(data);
-    setToken(token);
+
+  const signup = async (data) => {
+    let response = await JoblyApi.signup(data)
+    setToken(response)
   }
 
-  const logIn = async (data) => {
-    token = await JoblyApi.login(data);
-    setToken(token);
+  const login = async (data = {username: 'camden', password: 'password'}) => {
+    setToken(await JoblyApi.login(data));
   }
 
   return (
@@ -31,8 +32,8 @@ function App() {
         <NavBar />
           <Routes >
               <Route path='/' element={<Home />}/>
-              <Route path='/login' element={<LoginForm logIn={logIn}/>}/>
-              <Route path='signup' element={<SignupForm signUp={signUp}/>}/>
+              <Route path='/login' element={<LoginForm login={login}/>}/>
+              <Route path='signup' element={<SignupForm signup={signup} />}/>
               <Route path='/companies' element={<CompanyList />}/>
               <Route path='/companies/:handle' element={<CompanyDetail />}/>
               <Route path='/jobs' element={<JobList/>}/>

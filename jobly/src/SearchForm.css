@@ -8,14 +8,15 @@
 
 .SearchForm label{
     margin:5px;
-    color: white;
+    color: black;
+    font-weight: bold;
 }
 
 .SearchForm input{
     margin: 0px 3px;
     width: 20vw;
     border-radius: 5px;
-    border: white;
+    border: black 2px solid;
     float: right;
 }
 

@@ -1,6 +1,7 @@
-ApplyButton{
+.ApplyButton{
     float: right;
-    background-color: #E5C1BD;
+    background-color: #45565E;
+    color: white;
     padding: 5px 5px;
     border-radius: 5px;
 }

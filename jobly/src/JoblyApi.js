@@ -38,14 +38,14 @@ class JoblyApi {
   // Individual API routes
   /** Login a user and receive back a token. LoginData = {username, password}*/
   static async login(loginData){
-    let res = await this.request(`token`, loginData, method='post');
+    let res = await this.request(`auth/token`, loginData, method='post');
     JoblyApi.token=res.token;
     return res.token;
   }
 
   /** Signup a user and receive back a token. signupData = {username, password, firstName, lastName, email} */
   static async signup(signupData){
-    let res = await this.request(`register`, signupData, method='post');
+    let res = await this.request(`auth/register`, signupData, "post");
     JoblyApi.token = res.token;
     return res.token;
   }

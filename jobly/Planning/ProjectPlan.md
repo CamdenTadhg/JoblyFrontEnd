@@ -1,16 +1,17 @@
 THE HARDER PART
-14) Figure out local storage to keep the token in simple state and retrieve it
-13) Write useLocalStorage hook
-12) Make controlled form for signing up
-  - make signing up function in App component
-  - onSubmit, gather data and run function in Signup Component
-  - sign up a new user with login form defaults set to that username and password
+8/1
 11) Make controlled form for logging in
   - create form
   - onChange
+  - on Submit, gather data and run function in Signup Component
+  - redirect user appropriately
 11) Get signup and login working
-  - see if it works
+  - see if login works  
+  - need solution for duplicate username situation in signup
+  - see if it retains the token when you reload page (localStorage works)
   - read and understand hint
+
+8/1
 10) If not logged in, show login and signup
   - add conditional logic to links
   - make it work
@@ -20,26 +21,33 @@ THE HARDER PART
   - make it work
 8) Homepage shows different messages based on log in state
 7) Protect routes from logged out users
+
+8/2
 6) Create profile page
 5) Allow user to edit profile and update site
     - create listing of jobs applied for on profile site using job card
+      - you'll need a new route for this on the backend
+
+8/4-8/5
 4) Allow job application functionality
     Button to apply if you haven't applied yet
     Should show Applied if you've already applied
     Should retain that information across pages during your session
     Should retain that information between sessions (pull it from the database)
+
 THE REALLY HARD PART
+8/6-8/7
 3) Write tests
 1) Deploy on Render
     Set up database on Supabase
     Deploy backend on Render
     Deploy frontend on Render
 
-/* pink: #E5C1BD, 
-tan: #D2D0BA
-blue: #5E747F
-yellow: B6BE9C
-green: 7B9E87 */
+THE FUTURE PART
+- Tweak to be accessible for portfolio
+- Substitute in my own backend and get it working
+
+
 
 
 ## **Step Six: Current User**

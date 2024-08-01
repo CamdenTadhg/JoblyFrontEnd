@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import './SignupForm.css'
 
-function SignupForm() {
+function SignupForm({signup}) {
     //set initial state for form
     const initialState = {
         username: '',
@@ -11,8 +12,13 @@ function SignupForm() {
         lastName: '',
         email: ''
     }
+    //set state for form inputs
     const [formData, setFormData] = useState(initialState);
+    const [matching, setMatching] = useState(true);
+    const [duplicateUsername, setDuplicateUsername] = useState(false);
+    const navigate = useNavigate();
 
+    //handle change to form inputs
     const handleChange = (event) => {
         const {name, value} = event.target;
         setFormData(fData => ({
@@ -21,7 +27,19 @@ function SignupForm() {
         }));
     };
 
-    const handleSubmit = () => {}
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        //validate passwords match
+        setMatching(formData.password === formData.retypePassword);
+        if (matching){
+            //gather data 
+            const {username, password, firstName, lastName, email} = formData;
+            const signupData = {username, password, firstName, lastName, email};
+            //run signup function
+            await signup(signupData);
+            navigate('/');
+        }
+    }
 
     return (
         <div className='SignupForm'>
@@ -29,28 +47,31 @@ function SignupForm() {
                 <h5>Signup Form</h5>
                 <div className="input-item">
                     <label htmlFor='username'>Username:</label>
-                    <input type='text' id='username' name='username' value={FormData.username} onChange={handleChange}/>
+                    <input type='text' id='username' name='username' value={FormData.username} onChange={handleChange} required/>
                 </div>
+                {duplicateUsername ? <div className='error'>Username already in system</div> : null}
                 <div className="input-item">
                     <label htmlFor='password'>Password:</label>
-                    <input type='text' id='password' name='password' value={FormData.password} onChange={handleChange}/>
+                    <input type='password' id='password' name='password' value={FormData.password} onChange={handleChange} required/>
                 </div>
                 <div className="input-item">
                     <label htmlFor='retypePassword'>Retype Password:</label>
-                    <input type='text' id='retypePassword' name='retypePassword' value={FormData.retypePassword} onChange={handleChange}/>
+                    <input type='password' id='retypePassword' name='retypePassword' value={FormData.retypePassword} onChange={handleChange} required/>
                 </div>
                 <div className="input-item">
                     <label htmlFor='firstName'>First Name:</label>
-                    <input type='text' id='firstName' name='firstName' value={FormData.firstName} onChange={handleChange}/>
+                    <input type='text' id='firstName' name='firstName' value={FormData.firstName} onChange={handleChange} required/>
                 </div>
                 <div className="input-item">
                     <label htmlFor='lastName'>Last Name: </label>
-                    <input type='text' id='lastName' name='lastName' value={FormData.lastName} onChange={handleChange}/>
+                    <input type='text' id='lastName' name='lastName' value={FormData.lastName} onChange={handleChange} required/>
                 </div>
                 <div className="input-item">
                     <label htmlFor='email'>Email: </label>
-                    <input type='text' id='email' name='email' value={FormData.email} onChange={handleChange}/>
+                    <input type='text' id='email' name='email' value={FormData.email} onChange={handleChange} required/>
                 </div>
+                {!matching ? <div className='error'>Passwords do not match.</div> : null}
+                <button className='submit-button'>Submit</button>
             </form>
         </div>
     )
