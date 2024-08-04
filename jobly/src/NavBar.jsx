@@ -6,7 +6,6 @@ import './NavBar.css';
 import UserContext from './userContext';
 
 function NavBar({logout}) {
-    console.log('rerendering NavBar')
     const currentUser = useContext(UserContext);
     const navigate = useNavigate();
 

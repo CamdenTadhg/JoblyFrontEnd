@@ -1,13 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import SearchForm from './SearchForm';
 import JobCard from './JobCard';
 import JoblyApi from './JoblyApi';
 import {v4 as uuid} from 'uuid';
+import {Navigate} from 'react-router-dom';
 import './JobList.css';
+import UserContext from './userContext';
 
 function JobList(){
     const [isLoading, setIsLoading] = useState(true);
     const [jobs, setJobs] = useState([]);
+    const currentUser = useContext(UserContext);
 
     //get a list of jobs from the API and set state appropriately
     useEffect(() => {

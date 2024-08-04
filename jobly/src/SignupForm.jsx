@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import './SignupForm.css'
 
@@ -15,7 +15,7 @@ function SignupForm({signup}) {
     //set state for form inputs
     const [formData, setFormData] = useState(initialState);
     const [matching, setMatching] = useState(true);
-    const [duplicateUsername, setDuplicateUsername] = useState(false);
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     //handle change to form inputs
@@ -25,19 +25,28 @@ function SignupForm({signup}) {
             ...fData,
             [name]: value
         }));
+        setMatching(formData.password === formData.retypePassword);
     };
+
+    useEffect(() => {
+        setMatching(formData.password === formData.retypePassword);
+    }, [formData])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         //validate passwords match
-        setMatching(formData.password === formData.retypePassword);
         if (matching){
             //gather data 
             const {username, password, firstName, lastName, email} = formData;
             const signupData = {username, password, firstName, lastName, email};
             //run signup function
-            await signup(signupData);
-            navigate('/');
+            try{
+                await signup(signupData);
+                navigate('/');
+            } catch (error){
+                setError(error);
+            }
+
         }
     }
 
@@ -49,7 +58,6 @@ function SignupForm({signup}) {
                     <label htmlFor='username'>Username:</label>
                     <input type='text' id='username' name='username' value={FormData.username} onChange={handleChange} required/>
                 </div>
-                {duplicateUsername ? <div className='error'>Username already in system</div> : null}
                 <div className="input-item">
                     <label htmlFor='password'>Password:</label>
                     <input type='password' id='password' name='password' value={FormData.password} onChange={handleChange} required/>
@@ -70,7 +78,8 @@ function SignupForm({signup}) {
                     <label htmlFor='email'>Email: </label>
                     <input type='text' id='email' name='email' value={FormData.email} onChange={handleChange} required/>
                 </div>
-                {!matching ? <div className='error'>Passwords do not match.</div> : null}
+                {!matching ? <div className='alert alert-danger'>Passwords do not match.</div> : null}
+                {error ? <div className='alert alert-danger'>{error}</div> : null}
                 <button className='submit-button'>Submit</button>
             </form>
         </div>

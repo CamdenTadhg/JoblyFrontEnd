@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Navigate, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import './LoginForm.css';
 
 function LoginForm({login}) {
@@ -11,6 +11,7 @@ function LoginForm({login}) {
 
     //set state for form inputs
     const [formData, setFormData] = useState(initialState);
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleChange = (event) => {
@@ -24,8 +25,13 @@ function LoginForm({login}) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const loginData = formData;
-        await login(loginData);
-        navigate('/');
+        try {
+            await login(loginData);
+            navigate('/');
+        } catch (error) {
+            setError(error);
+        }
+
     };
 
     return (
@@ -40,6 +46,7 @@ function LoginForm({login}) {
                     <label htmlFor='password'>Password: </label>
                     <input type='password' id='password' name='password' value={FormData.password} onChange={handleChange} required />
                 </div>
+                {error ? <div className='alert alert-danger'>{error}</div> : null}
                 <button className='submit-button'>Submit</button>
             </form>
         </div>

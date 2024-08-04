@@ -1,20 +1,8 @@
 THE HARDER PART
-8/1
-8) Get signup and login working
-  - logout should redirect to home page
-  - need solution for duplicate username situation in signup
-  - need solution for bad login information in login
-  - see if it retains the token when you reload page (localStorage works)
-  - figure out use effect notes
-  - read and understand hint
-
-8/2
 6) Create profile page
 5) Allow user to edit profile and update site
     - create listing of jobs applied for on profile site using job card
       - you'll need a new route for this on the backend
-
-8/3
 4) Allow job application functionality
     Button to apply if you haven't applied yet
     Should show Applied if you've already applied
@@ -22,7 +10,6 @@ THE HARDER PART
     Should retain that information between sessions (pull it from the database)
 
 THE REALLY HARD PART
-8/4
 2) Write tests
 1) Deploy on Render
     Set up database on Supabase
@@ -32,43 +19,9 @@ THE REALLY HARD PART
 THE FUTURE PART
 - Tweak to be accessible for portfolio
 - Substitute in my own backend and get it working
+- Implement comprehensible error messages for json schema failing for signup and login
 
 
-
-
-## **Step Six: Current User**
-
-This step is tricky. Go slowly and test your work carefully.
-
-Add features where users can log in, sign up, and log out. This should use the backend routes design for authentication and registration.
-
-When the user logs in or registers, retrieve information about that user and keep track of it somewhere easily reached elsewhere in the application.
-
-Things to do:
-
-- Make forms for logging in and signing up
-- In the navigation, show links to the login and signup forms if a user is not currently logged in.
-    
-    If someone is logged in, show their username in the navigation, along with a way to log out.
-    
-- Have the homepage show different messages if the user is logged in or out.
-- When you get a token from the login and register processes, store that token on the ***JoblyApi*** class, instead of always using the hardcoded test one. You should also store the token in state high up in your hierarchy; this will let you use an effect to watch for changes to that token to kick off a process of loading the information about the new user.
-
-Think carefully about where functionality should go, and keep your components as simple as you can. For example, in the ***LoginForm*** component, its better design that this doesn’t handle directly all of the parts of logging in (authenticating via API, managing the current user state, etc). The logic should be more centrally organized, in the ***App*** component or a specialized component.
-
-While writing this, your server will restart often, which will make it tedious to keep typing in on the login and signup forms. A good development tip is to hardcode suitable defaults onto these forms during development; you can remove those defaults later.
-
-## **Step Seven: Using localStorage and Protecting Routes**
-
-If the user refreshes their page or closes the browser window, they’ll lose their token. Find a way to add ***localStorage*** to your application so instead of keeping the token in simple state, it can be stored in localStorage. This way, when the page is loaded, it can first look for it there.
-
-Be thoughtful about your design: it’s not great design to have calls to reading and writing localStorage spread around your app. Try to centralize this concern somewhere.
-
-As a bonus, you can write a generalized ***useLocalStorage*** hook, rather than writing this tied specifically to keeping track of the token.
-
-### **Protecting Routes**
-
-Once React knows whether or not there’s a current user, you can start protecting certain views! Next, make sure that on the front-end, you need to be logged in if you want to access the companies page, the jobs page, or a company details page.
 
 ## **Step Eight: Profile Page**
 

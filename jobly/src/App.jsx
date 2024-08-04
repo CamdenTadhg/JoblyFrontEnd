@@ -15,19 +15,33 @@ import {decodeToken} from 'react-jwt';
 import UserContext from './userContext';
 
 function App() {
-  console.log('rerendering App')
+  const initialState = {
+    username: '',
+    firstName: '',
+    lastName: '',
+    email: ''
+  }
   const [token, setToken] = useLocalStorage('token', '');
-  const [currentUser, setCurrentUser] = useLocalStorage('currentUser', '');
-  console.log('token = ', token);
-  console.log('currentUser = ', currentUser);
+  const [currentUser, setCurrentUser] = useLocalStorage('currentUser', initialState);
 
 
   const signup = async (data) => {
-    await setToken(await JoblyApi.signup(data));
+    const response = await JoblyApi.signup(data);
+    if (typeof response === 'string'){
+      setToken(response);
+    } else {
+      console.error(response);
+      throw response;
+    }
   }
 
-  const login = async (data = {username: 'camden', password: 'password'}) => {
-    await setToken(await JoblyApi.login(data));
+  const login = async (data) => {
+    const response = await JoblyApi.login(data);
+    if (typeof response === 'string'){
+      setToken(response);
+    } else {
+      throw response;
+    }
   }
 
   const logout = () => {

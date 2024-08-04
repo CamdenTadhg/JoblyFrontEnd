@@ -7,7 +7,6 @@ import './CompanyList.css';
 import UserContext from './userContext';
 
 function CompanyList(){
-    console.log('rerendering CompanyList')
     const [isLoading, setIsLoading] = useState(true);
     const [companies, setCompanies] = useState([]);
     const currentUser = useContext(UserContext);

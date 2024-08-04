@@ -1,4 +1,4 @@
-.SignupForm{
+.Profile{
     position: absolute;
     top: 65px;
     left: 50%;
@@ -11,11 +11,11 @@
     width: 25vw;
 }
 
-.SignupForm label{
-    margin:5px;
+.Profile label{
+    margin: 5px;
 }
 
-.SignupForm input{
+.Profile input{
     margin: 0px 3px;
     border-radius: 5px;
     border: 1px solid black;
@@ -25,12 +25,4 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-
-.submit-button {
-    float: right;
-    margin-top: 10px;
-    background-color: #45565E;
-    color: white;
 }
