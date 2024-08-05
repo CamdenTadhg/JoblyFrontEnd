@@ -16,17 +16,18 @@ class JoblyApi {
   static token;
 
   static async request(endpoint, data = {}, method = "get") {
-    console.debug("API Call:", endpoint, data, method);
+    console.log("API Call:", endpoint, data, method);
 
     //there are multiple ways to pass an authorization token, this is how you pass it in the header.
     //this has been provided to show you another way to pass the token. you are only expected to read this code for this project.
     const url = `${BASE_URL}/${endpoint}`;
-    const headers = { Authorization: `Bearer ${JoblyApi.token}` };
+    const headers = { authorization: `Bearer ${JoblyApi.token}` };
     const params = (method === "get")
         ? data
         : {};
 
     try {
+      console.log('headers are', headers);
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("API Error:", err.response);
@@ -40,6 +41,7 @@ class JoblyApi {
   static async login(loginData){
     try {
       let res = await this.request(`auth/token`, loginData, 'post');
+      console.log('res.token is ', res.token);
       JoblyApi.token=res.token;
       return res.token;
     } catch (error){
@@ -117,21 +119,22 @@ class JoblyApi {
     return res.user;
   }
 
-  /** Edit a user's details. userData = {username, firstName, lastName, password, email} */
+  /** Edit a user's details. userData = {firstName, lastName, password, email} */
   static async editUserDetails(username, userData){
-    let res = await this.request(`users/${username}`, userData, method='patch');
+    let res = await this.request(`users/${username}`, userData, 'patch');
+    console.log('res is', res);
     return res.user;
   }
 
   /** Delete a user's account */
   static async deleteUser(username) {
-    let res = await this.request(`users/${username}`, method='delete');
+    let res = await this.request(`users/${username}`, 'delete');
     return res.deleted;
   }
 
   /**Create job application for a user */
   static async applyToJob(username, jobId){
-    let res = await this.request(`users/${username}/jobs/${jobId}`, method="post");
+    let res = await this.request(`users/${username}/jobs/${jobId}`, "post");
     return res.applied;
   }
 }

@@ -15,6 +15,7 @@ import {decodeToken} from 'react-jwt';
 import UserContext from './userContext';
 
 function App() {
+  console.log('rerendering app');
   const initialState = {
     username: '',
     firstName: '',
@@ -22,7 +23,12 @@ function App() {
     email: ''
   }
   const [token, setToken] = useLocalStorage('token', '');
-  const [currentUser, setCurrentUser] = useLocalStorage('currentUser', initialState);
+  const [currentUser, setCurrentUser] = useLocalStorage('currentUser', '');
+  let profileData;
+  JoblyApi.token = token;
+  console.log('token is ', token);
+  console.log('JoblyApi.token is ', JoblyApi.token);
+  console.log('token says ', decodeToken(token))
 
 
   const signup = async (data) => {
@@ -45,9 +51,18 @@ function App() {
   }
 
   const logout = () => {
-    console.log('starting logout function');
     JoblyApi.token = '';
     setToken('');
+  }
+
+  const editProfile = async (username, userData) => {
+    const response = await JoblyApi.editUserDetails(username, userData);
+    console.log('response is ', response);
+    if (response.username){
+      return response;
+    } else {
+      throw response;
+    }
   }
 
   useEffect(() => {
@@ -59,6 +74,7 @@ function App() {
       setCurrentUser('');
     }
   }, [token]);
+
 
   return (
     <div className='App'>
@@ -72,7 +88,7 @@ function App() {
                 <Route path='/companies' element={<CompanyList />}/>
                 <Route path='/companies/:handle' element={<CompanyDetail />}/>
                 <Route path='/jobs' element={<JobList/>}/>
-                <Route path='/profile' element={<Profile/>}/>
+                <Route path='/profile' element={<Profile editProfile={editProfile}/>}/>
             </Routes>
         </UserContext.Provider>
       </BrowserRouter>

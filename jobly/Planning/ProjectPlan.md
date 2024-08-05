@@ -1,13 +1,15 @@
 THE HARDER PART
-6) Create profile page
-5) Allow user to edit profile and update site
-    - create listing of jobs applied for on profile site using job card
-      - you'll need a new route for this on the backend
+5) Show jobs on profile page
+    - create new route for this on the back end
+    - create JoblyAPI method for this
+    - call job list in Profile component
+    - construct job list
 4) Allow job application functionality
-    Button to apply if you haven't applied yet
-    Should show Applied if you've already applied
-    Should retain that information across pages during your session
-    Should retain that information between sessions (pull it from the database)
+    Change company detail route to include application information
+    Change job list route to include application information
+    Code button to show apply or applied based on status
+    Ensure this is retained across pages during session
+    Ensure this is retained between sessions
 
 THE REALLY HARD PART
 2) Write tests

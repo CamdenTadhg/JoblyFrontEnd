@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import React, {useState, useEffect, useContext} from 'react';
+import {useParams, Navigate} from 'react-router-dom';
 import JobCard from './JobCard';
 import JoblyApi from './JoblyApi';
 import './CompanyDetail.css';
+import UserContext from './userContext';
 
 function CompanyDetail(){
     const [isLoading, setIsLoading] = useState(true);
     const [company, setCompany] = useState({});
     const {handle} = useParams();
+    const currentUser = useContext(UserContext);
 
     //get the company's details from the API
     useEffect(() => {

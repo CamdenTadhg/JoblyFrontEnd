@@ -15,10 +15,8 @@ function JobList(){
     //get a list of jobs from the API and set state appropriately
     useEffect(() => {
         async function getJobs() {
-            console.log('starting getJobs')
             setIsLoading(true);
             let loadJobs = await JoblyApi.getAllJobs();
-            console.log(loadJobs)
             setJobs(loadJobs);
             setIsLoading(false);
         }
