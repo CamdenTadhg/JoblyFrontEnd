@@ -2,7 +2,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import {Navigate} from 'react-router-dom';
 import JobCard from './JobCard';
 import './Profile.css';
-import UserContext from './userContext';
+import UserContext from './contexts/userContext';
 import JoblyApi from './JoblyApi';
 
 function Profile({editProfile}){

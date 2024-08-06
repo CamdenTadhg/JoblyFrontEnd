@@ -3,9 +3,10 @@ import {useParams, Navigate} from 'react-router-dom';
 import JobCard from './JobCard';
 import JoblyApi from './JoblyApi';
 import './CompanyDetail.css';
-import UserContext from './userContext';
+import UserContext from './contexts/userContext';
 
 function CompanyDetail(){
+    console.log('rerendering companydetail')
     const [isLoading, setIsLoading] = useState(true);
     const [company, setCompany] = useState({});
     const {handle} = useParams();
@@ -16,11 +17,11 @@ function CompanyDetail(){
         async function getCompany(handleData) {
             setIsLoading(true);
             let loadCompany = await JoblyApi.getCompany(handleData);
-            setCompany(loadCompany)
+            setCompany(loadCompany);
             setIsLoading(false);
         }
         getCompany(handle);
-    },[]);
+    }, []);
 
     if (!currentUser){
         return <Navigate to='/'/>
@@ -42,7 +43,7 @@ function CompanyDetail(){
             </div>
             <div className='CompanyDetail-jobs'>
                 {company.jobs.map(job => {
-                    return(<JobCard title={job.title} salary={job.salary} equity={job.equity}/>)
+                    return(<JobCard key={job.id} id={job.id} title={job.title} salary={job.salary} equity={job.equity} applied={job.applied}/>)
                     
                 })}
             </div>

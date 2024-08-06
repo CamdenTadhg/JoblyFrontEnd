@@ -2,10 +2,9 @@ import React, {useEffect, useState, useContext} from 'react';
 import SearchForm from './SearchForm';
 import JobCard from './JobCard';
 import JoblyApi from './JoblyApi';
-import {v4 as uuid} from 'uuid';
 import {Navigate} from 'react-router-dom';
 import './JobList.css';
-import UserContext from './userContext';
+import UserContext from './contexts/userContext';
 
 function JobList(){
     const [isLoading, setIsLoading] = useState(true);
@@ -41,7 +40,7 @@ function JobList(){
             </div>
             <div className='JobList-jobs'>
                 {jobs.map(job => (
-                    <JobCard key={uuid()} title={job.title} salary={job.salary} equity={Boolean(job.equity)} company={job.companyName}/>
+                    <JobCard key={job.id} id={job.id} title={job.title} salary={job.salary} equity={Boolean(job.equity)} company={job.companyName} applied={job.applied}/>
                 ))}
             </div>
         </div>

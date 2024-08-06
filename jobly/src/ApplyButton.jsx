@@ -1,12 +1,25 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import './ApplyButton.css';
+import UserContext from './contexts/userContext';
+import ApplyContext from './contexts/applyContext';
 
-function ApplyButton({applied}){
-    if (applied){
+function ApplyButton({applied, jobId}){
+    console.log('rerendering applybutton')
+    const [tempApplied, setTempApplied] = useState(false);
+    const currentUser = useContext(UserContext);
+    const apply = useContext(ApplyContext);
+
+    const handleClick = () => {
+        console.log('starting handle click')
+        apply(currentUser, jobId);
+        setTempApplied(true);
+    }
+
+    if (applied || tempApplied){
         return (<button className='ApplyButton' disabled>Applied</button>)
     }
     return(
-        <button className='ApplyButton'>Apply</button>
+        <button className='ApplyButton' onClick={handleClick}>Apply</button>
     )
 }
 

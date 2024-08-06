@@ -3,7 +3,8 @@ import ApplyButton from './ApplyButton';
 import {Card, CardTitle, CardBody, CardText} from 'reactstrap';
 import './JobCard.css';
 
-function JobCard({title, salary, equity, company, applied}){
+function JobCard({id, title, salary, equity, company, applied}){
+    console.log('rerendering jobCard');
     return(
         <Card className="JobCard-card">
             <CardBody>
@@ -11,7 +12,7 @@ function JobCard({title, salary, equity, company, applied}){
                 {company? <div className='JobCard-company'>{company}</div>: null}
                 <div>Salary: {salary}</div>
                 <div>Equity: {equity ? 'YES': 0}</div>
-                <ApplyButton applied={applied}/>
+                <ApplyButton jobId={id} applied={applied}/>
             </CardBody>
 
         </Card>

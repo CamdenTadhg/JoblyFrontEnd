@@ -3,7 +3,7 @@ import {NavLink, useNavigate} from 'react-router-dom';
 import {Navbar, Nav} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './NavBar.css';
-import UserContext from './userContext';
+import UserContext from './contexts/userContext';
 
 function NavBar({logout}) {
     const currentUser = useContext(UserContext);

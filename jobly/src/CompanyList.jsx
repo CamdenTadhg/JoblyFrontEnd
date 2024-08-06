@@ -4,7 +4,7 @@ import SearchForm from './SearchForm';
 import CompanyCard from './CompanyCard';
 import JoblyApi from './JoblyApi';
 import './CompanyList.css';
-import UserContext from './userContext';
+import UserContext from './contexts/userContext';
 
 function CompanyList(){
     const [isLoading, setIsLoading] = useState(true);

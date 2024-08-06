@@ -12,7 +12,8 @@ import './App.css'
 import JoblyApi from './JoblyApi';
 import useLocalStorage from './hooks/useLocalStorage';
 import {decodeToken} from 'react-jwt';
-import UserContext from './userContext';
+import UserContext from './contexts/userContext';
+import ApplyContext from './contexts/applyContext';
 
 function App() {
   console.log('rerendering app');
@@ -57,12 +58,15 @@ function App() {
 
   const editProfile = async (username, userData) => {
     const response = await JoblyApi.editUserDetails(username, userData);
-    console.log('response is ', response);
     if (response.username){
       return response;
     } else {
       throw response;
     }
+  }
+
+  const apply = async(username, jobId) => {
+    const response = await JoblyApi.applyToJob(username, jobId);
   }
 
   useEffect(() => {
@@ -80,16 +84,18 @@ function App() {
     <div className='App'>
       <BrowserRouter>
         <UserContext.Provider value={currentUser}>
+        <ApplyContext.Provider value={apply}>
           <NavBar logout={logout}/>
             <Routes >
                 <Route path='/' element={<Home/>}/>
                 <Route path='/login' element={<LoginForm login={login}/>}/>
                 <Route path='signup' element={<SignupForm signup={signup} />}/>
                 <Route path='/companies' element={<CompanyList />}/>
-                <Route path='/companies/:handle' element={<CompanyDetail />}/>
-                <Route path='/jobs' element={<JobList/>}/>
-                <Route path='/profile' element={<Profile editProfile={editProfile}/>}/>
+                  <Route path='/companies/:handle' element={<CompanyDetail/>}/>
+                  <Route path='/jobs' element={<JobList/> }/>
+                  <Route path='/profile' element={<Profile editProfile={editProfile}/>}/>
             </Routes>
+            </ApplyContext.Provider>
         </UserContext.Provider>
       </BrowserRouter>
     </div>
