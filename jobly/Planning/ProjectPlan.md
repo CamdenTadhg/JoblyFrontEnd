@@ -1,6 +1,20 @@
 THE REALLY HARD PART
 2) Write tests
     - mock axios not Api, as per Snack-or-Booze project
+    - SignupForm
+    - SearchForm
+    - Profile
+    - NavBar
+    - LoginForm
+    - JoblyApi
+    - JobList
+    - JobCard
+    - Home
+    - CompanyList
+    - CompanyDetail
+    - CompanyCard
+    - ApplyButton
+    - App
 1) Deploy on Render
     Set up database on Supabase
     Deploy backend on Render

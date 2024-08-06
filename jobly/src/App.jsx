@@ -37,7 +37,6 @@ function App() {
     if (typeof response === 'string'){
       setToken(response);
     } else {
-      console.error(response);
       throw response;
     }
   }
