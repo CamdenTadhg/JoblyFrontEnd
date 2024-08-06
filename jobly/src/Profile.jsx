@@ -18,7 +18,7 @@ function Profile({editProfile}){
         async function getUserData() {
             setIsLoading(true);
             let profileData = await JoblyApi.getUserDetails(currentUser);
-            console.log('profileData is ', profileData);
+            console.log(profileData);
             setFormData(profileData);
             setIsLoading(false);
         }
@@ -60,6 +60,8 @@ function Profile({editProfile}){
         )}
 
     return(
+        <>
+
         <div className='Profile'>
             <form onSubmit={handleSubmit}>
                 <h5>User Profile</h5>
@@ -84,6 +86,12 @@ function Profile({editProfile}){
                 <button className='submit-button'>Submit</button>
             </form>
         </div>
+        <div className='Profile-jobs'>
+                {formData.applications.map(app => {
+                    return(<JobCard key={app.id} id={app.id} title={app.title} salary={app.salary} equity={app.equity} applied={app.applied}/>)
+                })}
+        </div>
+        </>
     )
 }
 

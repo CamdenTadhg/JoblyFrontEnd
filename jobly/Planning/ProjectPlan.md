@@ -1,19 +1,3 @@
-THE HARDER PART
-4) Allow job application functionality
-    SAVE TO GIT
-    Change profile component to include application information
-        - set back end model to include jobs applied to in data
-            - check tests
-        - set back end route to include jobs applied to in data
-            - check tests
-        - set JoblyApi.getUserDetails to handle new incoming data
-        - set useEffect to handle new incoming data
-        - construct job list
-        - check buttons still appear apply or applied
-        - check button does nothing when clicked
-    Ensure this is retained across pages during session
-    Ensure this is retained between sessions
-
 THE REALLY HARD PART
 2) Write tests
     - mock axios not Api, as per Snack-or-Booze project
