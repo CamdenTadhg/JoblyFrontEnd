@@ -12,6 +12,8 @@ beforeEach(() => {
   mock.onPost('http://localhost:3001/auth/register').reply(500, {error: {message: 'error message'}});
 });
 
+afterEach(cleanup);
+
 test('displays error message on signup failure', async () => {
       const spySignup = vi.spyOn(JoblyApi, 'signup');
       const signup = async (data) => {

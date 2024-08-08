@@ -43,44 +43,51 @@ test('renders the Profile component', () => {
     render(<Profile/>, {wrapper: Wrapper});
 });
 
-test('matches the snapshot', () => {
+test('matches the snapshot', async () => {
+    const spyGetUserDetails = vi.spyOn(JoblyApi, 'getUserDetails');
     const profile = render(<Profile/>, {wrapper: Wrapper});
+    await waitFor(() => {
+        expect(JoblyApi.getUserDetails).toHaveBeenCalledWith('testuser');
+    })
     expect(profile).toMatchSnapshot();
 });
 
-// test('displays the correct content', async () => {
-//     const spyGetUserDetails = vi.spyOn(JoblyApi, 'getUserDetails');
-//     const {getByText} = render(<Profile />, {wrapper: Wrapper} );  
-//     await waitFor(() => {
-//         expect(JoblyApi.getUserDetails).toHaveBeenCalledWith('testuser');
-//     })
-//     expect(getByText('testuser@test.com')).toBeInTheDocument();
-//     expect(getByText('Accommodation manager')).toBeInTheDocument();
-// });
+test('displays the correct content', async () => {
+    const spyGetUserDetails = vi.spyOn(JoblyApi, 'getUserDetails');
+    const {getByText, getByDisplayValue} = render(<Profile />, {wrapper: Wrapper} );  
+    await waitFor(() => {
+        expect(JoblyApi.getUserDetails).toHaveBeenCalledWith('testuser');
+    })
+    expect(getByDisplayValue('testuser@test.com')).toBeInTheDocument();
+    expect(getByText('Accommodation manager')).toBeInTheDocument();
+});
 
-// test('updates the profile on submit', async () => {
-//     const spyEditProfile = vi.spyOn(JoblyApi, 'editUserDetails');
-//     const editProfile = async (username, userData) => {
-//         const response = await JoblyApi.editUserDetails(username, userData);
-//         if (response.username){
-//           console.log(response);
-//           return response;
-//         } else {
-//           throw response;
-//         }
-//       }
-//     const {getByText, getByLabelText} = render(<Profile editProfile={editProfile}/>, {wrapper: Wrapper});
-//     fireEvent.change(getByLabelText('Email:'), {target: {value: 'testuser2@test.com'}});
-//     fireEvent.click(getByText('Submit'));
+test('updates the profile on submit', async () => {
+    const spyGetUserDetails = vi.spyOn(JoblyApi, 'getUserDetails');
+    const spyEditProfile = vi.spyOn(JoblyApi, 'editUserDetails');
+    const editProfile = async (username, userData) => {
+        const response = await JoblyApi.editUserDetails(username, userData);
+        if (response.username){
+          console.log(response);
+          return response;
+        } else {
+          throw response;
+        }
+      }
+    const {getByText, getByLabelText} = render(<Profile editProfile={editProfile}/>, {wrapper: Wrapper});
+    await waitFor(() => {
+        expect(JoblyApi.getUserDetails).toHaveBeenCalledWith('testuser');
+    })
+    fireEvent.change(getByLabelText('Email:'), {target: {value: 'testuser2@test.com'}});
+    fireEvent.click(getByText('Submit'));
 
-//     await waitFor(() => {
-//         expect(JoblyApi.editUserDetails).toHaveBeenCalledWith('testuser', {
-//             email: 'testuser2@test.com',
-//             firstName: 'Test',
-//             lastName: 'User',
-//             username: 'testuser'
-//         });
-//     });
-//     expect(getByText('Changes saved')).toBeInTheDocument();
-// });
+    await waitFor(() => {
+        expect(JoblyApi.editUserDetails).toHaveBeenCalledWith('testuser', {
+            email: 'testuser2@test.com',
+            firstName: 'Test',
+            lastName: 'User',
+        });
+    });
+    expect(getByText('Changes saved')).toBeInTheDocument();
+});
 

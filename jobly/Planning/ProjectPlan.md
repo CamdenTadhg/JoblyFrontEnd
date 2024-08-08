@@ -1,46 +1,26 @@
 THE REALLY HARD PART
 3) Write tests 
-    - Profile [save to git]
-        - not working at all. stuck in loading
-    - LoginForm [save to git]
-    - JoblyApi [save to git]
-    - JobList [save to git]
-    - JobCard [save to git]
-    - Home [save to git]
-    - CompanyList [save to git]
-    - CompanyDetail [save to git]
-    - CompanyCard [save to git]
-    - ApplyButton [save to git]
-    - App [save to git]
-1) Deploy on Render
+    - JoblyApi [save to git]: Thursday
+    - JobList [save to git]: Thursday
+    - JobCard [save to git]: Thursday
+    - Home [save to git]: Thursday
+    - CompanyList [save to git]: Thursday
+    - CompanyDetail [save to git]: Thursday
+    - CompanyCard [save to git]: Friday
+    - ApplyButton [save to git]: Friday
+    - App [save to git]: Friday
+1) Deploy on Render: Sunday
     Set up database on Supabase
     Deploy backend on Render
     Deploy frontend on Render
 
 THE FUTURE PART
-- Tweak to be accessible for portfolio
 - Substitute in my own backend and get it working
+    - will need all the application stuff I added
+- Tweak to be accessible for portfolio
 - Implement comprehensible error messages for json schema failing for signup and login
 
 
-
-## **Step Eight: Profile Page**
-
-Add a feature where the logged-in user can edit their profile. Make sure that when a user saves changes here, those are reflected elsewhere in the app.
-
-## **Step Nine: Job Applications**
-
-A user should be able to apply for jobs (there’s already a backend endpoint for this!).
-
-On the job info (both on the jobs page, as well as the company detail page), add a button to apply for a job. This should change if this is a job the user has already applied to.
-
-## **Step Ten: Deploy your Application**
-
-We’re going to use Render to deploy our backend and frontend! Before you continue, make sure you have two folders, each with their own git repository (and make sure you do not have one inside of another!)
-
-
-
-It’s important to have this structure because we need two different deployments, one for the front-end and one for the backend.
 
 ### **Render Deploy**
 
