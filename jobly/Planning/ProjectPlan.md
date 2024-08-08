@@ -2,10 +2,11 @@ THE REALLY HARD PART
 3) Write tests
     - Signup Form [save to git]
         - mocking useNavigate
-    - Search Form [save to git]
-        - submit form data on change a sets list
     - Profile [save to git]
+        - not working at all. stuck in loading
     - NavBar [save to git]
+        - NavBarLoggedOut.test.jsx is working
+        - NavBarLoggedIn.test.jsx requires mocking useNavigate and testing logout
     - LoginForm [save to git]
     - JoblyApi [save to git]
     - JobList [save to git]

@@ -19,6 +19,16 @@ const Wrapper = ({children}) => {
 
 afterEach(cleanup);
 
-test('matches the snapshot', () => {});
-test('displays the correct content', () => {});
+test('matches the snapshot', () => {
+    const navbar = render(<NavBar/>, {wrapper: Wrapper});
+    expect(navbar).toMatchSnapshot();
+});
+
+test('displays the correct content', () => {
+    const {getByText, queryByText} = render(<NavBar/>, {wrapper: Wrapper});
+    expect(getByText('Jobs')).toBeInTheDocument();
+    expect(queryByText('Login')).not.toBeInTheDocument();
+});
+
+
 test('logs a user out', () => {})

@@ -10,7 +10,6 @@ function Profile({editProfile}){
     const [formData, setFormData] = useState();
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
-    console.log('formData is ', formData);
     const [isLoading, setIsLoading] = useState(true);
 
     //get profile data from API and set state appropriately
@@ -18,6 +17,7 @@ function Profile({editProfile}){
         async function getUserData() {
             setIsLoading(true);
             let profileData = await JoblyApi.getUserDetails(currentUser);
+            console.log('profileData received: ', profileData);
             setFormData(profileData);
             setIsLoading(false);
         }

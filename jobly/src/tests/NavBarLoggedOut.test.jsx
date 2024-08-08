@@ -26,7 +26,7 @@ test('matches the snapshot', () => {
 });
 
 test('displays the correct content', () => {
-    const {getByText} = render(<NavBar/>, {wrapper: Wrapper});
+    const {getByText, queryByText} = render(<NavBar/>, {wrapper: Wrapper});
     expect(getByText('Login')).toBeInTheDocument();
-    expect(getByText('Jobs')).not.toBeInTheDocument();
+    expect(queryByText('Jobs')).not.toBeInTheDocument();
 });
