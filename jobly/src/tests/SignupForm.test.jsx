@@ -15,7 +15,7 @@ beforeEach(() => {
   const mock = new MockAdapter(axios);
   mock.onPost('http://localhost:3001/auth/register').reply(200, 'token');
 
-  vi.spyOn(router, 'useNavigate').mockImplementation(() => navigate)
+  vi.spyOn(router, 'useNavigate').mockImplementation(() => navigate);
 });
 
 afterEach(cleanup);

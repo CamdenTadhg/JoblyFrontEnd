@@ -4,10 +4,8 @@ THE REALLY HARD PART
         - mocking useNavigate
     - Profile [save to git]
         - not working at all. stuck in loading
-    - NavBar [save to git]
-        - NavBarLoggedOut.test.jsx is working
-        - NavBarLoggedIn.test.jsx requires mocking useNavigate and testing logout
     - LoginForm [save to git]
+        - requiresing mocking useNavigate
     - JoblyApi [save to git]
     - JobList [save to git]
     - JobCard [save to git]

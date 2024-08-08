@@ -1,11 +1,11 @@
 import {fireEvent, render, waitFor, cleanup} from '@testing-library/react';
 import {test, expect, vi, afterEach, beforeEach} from 'vitest';
 import {MemoryRouter} from 'react-router-dom';
-import Profile from '../Profile';
-import JoblyApi from '../JoblyApi';
-import MockAdapter from 'axios-mock-adapter';
-import axios from 'axios';
+import NavBar from '../NavBar';
+import * as router from 'react-router';
 import UserContext from '../contexts/userContext'
+
+const navigate = vi.fn();
 
 const Wrapper = ({children}) => {
     return (
@@ -16,6 +16,11 @@ const Wrapper = ({children}) => {
         </MemoryRouter>
     );
 };
+
+beforeEach(() => {
+    //mock useNavigate hook
+    vi.spyOn(router, 'useNavigate').mockImplementation(() => navigate);
+})
 
 afterEach(cleanup);
 
@@ -31,4 +36,12 @@ test('displays the correct content', () => {
 });
 
 
-test('logs a user out', () => {})
+test('logs a user out', async () => {
+    const spyLogout = vi.fn();
+    const {getByText} = render(<NavBar logout={spyLogout}/>, {wrapper: Wrapper});
+    fireEvent.click(getByText('Logout testuser'));
+    await waitFor(() => {
+        expect(spyLogout).toHaveBeenCalled();
+    });
+    expect(navigate).toHaveBeenCalledWith('/');
+})
