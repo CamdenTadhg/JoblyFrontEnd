@@ -18,7 +18,6 @@ function Profile({editProfile}){
         async function getUserData() {
             setIsLoading(true);
             let profileData = await JoblyApi.getUserDetails(currentUser);
-            console.log(profileData);
             setFormData(profileData);
             setIsLoading(false);
         }

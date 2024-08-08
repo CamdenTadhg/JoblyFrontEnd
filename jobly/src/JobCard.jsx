@@ -4,7 +4,6 @@ import {Card, CardTitle, CardBody, CardText} from 'reactstrap';
 import './JobCard.css';
 
 function JobCard({id, title, salary, equity, company, applied}){
-    console.log('rerendering jobCard');
     return(
         <Card className="JobCard-card">
             <CardBody>

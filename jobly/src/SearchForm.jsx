@@ -12,6 +12,7 @@ function SearchForm({fields, setData, type}){
         equity: false,
     };
     const [formData, setFormData] = useState(initialState);
+    const [error, setError] = useState('');
 
     const capitalize = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -35,17 +36,19 @@ function SearchForm({fields, setData, type}){
 
     useEffect(() => {
         async function getFilteredData(data){
-            console.log(data);
+            setError('');
             let filteredData;
             if (type === 'company'){
                 filteredData = await JoblyApi.getFilteredCompanies(data);
-                console.log(filteredData)
             }
             if (type ==='job'){
                 filteredData = await JoblyApi.getFilteredJobs(data);
-                console.log(filteredData)
             }
-            setData(filteredData);
+            if (filteredData.error){
+                setError(filteredData.error);
+            } else {
+                setData(filteredData);
+            }
         }
         getFilteredData(formData);
     }, [formData])
@@ -61,6 +64,7 @@ function SearchForm({fields, setData, type}){
                         <input name={field} id={field} value={formData[field]} onChange={handleChange}/> }
                     </div>
                 ))}
+                {error ? <div className='alert alert-danger'>{error}</div> : null}
             </form>
         </div>
     )

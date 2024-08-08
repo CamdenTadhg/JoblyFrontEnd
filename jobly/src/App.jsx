@@ -58,6 +58,7 @@ function App() {
   const editProfile = async (username, userData) => {
     const response = await JoblyApi.editUserDetails(username, userData);
     if (response.username){
+      console.log(response);
       return response;
     } else {
       throw response;

@@ -1,20 +1,21 @@
 THE REALLY HARD PART
-2) Write tests
-    - mock axios not Api, as per Snack-or-Booze project
-    - SignupForm
-    - SearchForm
-    - Profile
-    - NavBar
-    - LoginForm
-    - JoblyApi
-    - JobList
-    - JobCard
-    - Home
-    - CompanyList
-    - CompanyDetail
-    - CompanyCard
-    - ApplyButton
-    - App
+3) Write tests
+    - Signup Form [save to git]
+        - mocking useNavigate
+    - Search Form [save to git]
+        - submit form data on change a sets list
+    - Profile [save to git]
+    - NavBar [save to git]
+    - LoginForm [save to git]
+    - JoblyApi [save to git]
+    - JobList [save to git]
+    - JobCard [save to git]
+    - Home [save to git]
+    - CompanyList [save to git]
+    - CompanyDetail [save to git]
+    - CompanyCard [save to git]
+    - ApplyButton [save to git]
+    - App [save to git]
 1) Deploy on Render
     Set up database on Supabase
     Deploy backend on Render

@@ -4,7 +4,6 @@ import UserContext from './contexts/userContext';
 import ApplyContext from './contexts/applyContext';
 
 function ApplyButton({applied, jobId}){
-    console.log('rerendering applybutton')
     const [tempApplied, setTempApplied] = useState(false);
     const currentUser = useContext(UserContext);
     const apply = useContext(ApplyContext);

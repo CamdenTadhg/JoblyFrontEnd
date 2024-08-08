@@ -42,6 +42,7 @@ function SignupForm({signup}) {
             //run signup function
             try{
                 await signup(signupData);
+                console.log('signup complete')
                 navigate('/');
             } catch (error){
                 setError(error);

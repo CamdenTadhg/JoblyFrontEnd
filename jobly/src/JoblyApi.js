@@ -68,20 +68,24 @@ class JoblyApi {
 
   /** Get a filtered list of companies. searchFilters = {minEmployees, maxEmployees, name} */
   static async getFilteredCompanies(searchFilters) {
-    let {minEmployees, maxEmployees, name} = searchFilters;
-    let url = 'companies?';
-    if (minEmployees) {
-      url = url + `minEmployees=${minEmployees}&`;
+    try {
+      let {minEmployees, maxEmployees, name} = searchFilters;
+      let url = 'companies?';
+      if (minEmployees) {
+        url = url + `minEmployees=${minEmployees}&`;
+      }
+      if (maxEmployees){
+        url = url + `maxEmployees=${maxEmployees}&`;
+      }
+      if (name) {
+        url = url + `name=${name}`
+      }
+      let res = await this.request(url);
+      console.log(res);
+      return res.companies;
+    } catch(error){
+      return {error: error}
     }
-    if (maxEmployees){
-      url = url + `maxEmployees=${maxEmployees}&`;
-    }
-    if (name) {
-      url = url + `name=${name}`
-    }
-    let res = await this.request(url);
-    console.log(res);
-    return res.companies;
   }
 
   /** Get details on a company by handle. */
@@ -99,19 +103,24 @@ class JoblyApi {
 
   /** Get a filtered list of jobs. searchFilters = {salary, equity, title}*/
   static async getFilteredJobs(searchFilters){
-    let {salary, equity, title} = searchFilters;
-    let url = 'jobs?'
-    if (salary){
-      url = url + `minSalary=${salary}&`;
+    try {
+      let {salary, equity, title} = searchFilters;
+      let url = 'jobs?'
+      if (salary){
+        url = url + `minSalary=${salary}&`;
+      }
+      if (equity) {
+        url=url+`hasEquity=${equity}&`;
+      }
+      if(title) {
+        url= url + `title=${title}`;
+      }
+      let res = await this.request(url);
+      return res.jobs;
+    } catch (error) {
+      return {error: error};
     }
-    if (equity) {
-      url=url+`hasEquity=${equity}&`;
-    }
-    if(title) {
-      url= url + `title=${title}`;
-    }
-    let res = await this.request(url);
-    return res.jobs;
+
   }
 
   /** Get a user's details */

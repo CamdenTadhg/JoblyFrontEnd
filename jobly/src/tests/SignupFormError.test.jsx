@@ -1,5 +1,6 @@
 import {fireEvent, render, waitFor, cleanup} from '@testing-library/react';
 import {test, expect, vi, afterEach, beforeEach} from 'vitest';
+import {MemoryRouter} from 'react-router-dom';
 import SignupForm from '../SignupForm';
 import JoblyApi from '../JoblyApi';
 import MockAdapter from 'axios-mock-adapter';
@@ -8,7 +9,7 @@ import axios from 'axios'
 beforeEach(() => {
   //mock the axios call and useNavigate hook
   const mock = new MockAdapter(axios);
-  mock.onPost('http://localhost:3001/auth/register').reply(500, 'error message');
+  mock.onPost('http://localhost:3001/auth/register').reply(500, {error: {message: 'error message'}});
 });
 
 test('displays error message on signup failure', async () => {
@@ -22,8 +23,11 @@ test('displays error message on signup failure', async () => {
             throw response;
           }
         }
-      const {getByText, getByLabelText} = render(<SignupForm signup={signup}/>);
-      fireEvent.change(getByLabelText('Username:'), {target: {value: 'testuser'}});
+      const {getByText, getByLabelText} = render(
+      <MemoryRouter>
+        <SignupForm signup={signup}/>
+      </MemoryRouter>);
+      fireEvent.change(getByLabelText('Username:'), {target: {value: 'testuser2'}});
       fireEvent.change(getByLabelText('Password:'), {target: {value: 'password'}});
       fireEvent.change(getByLabelText('Retype Password:'), {target: {value: 'password'}});
       fireEvent.change(getByLabelText('First Name:'), {target: {value: 'Test'}});
@@ -33,7 +37,7 @@ test('displays error message on signup failure', async () => {
   
       await waitFor(() => {
           expect(JoblyApi.signup).toHaveBeenCalledWith({
-              username: 'testuser', 
+              username: 'testuser2', 
               password: 'password', 
               firstName: 'Test', 
               lastName: 'User', 
