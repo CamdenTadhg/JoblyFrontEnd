@@ -1,11 +1,10 @@
 THE REALLY HARD PART
 3) Write tests 
-    - JoblyApi [save to git]: Thursday
     - JobList [save to git]: Thursday
     - JobCard [save to git]: Thursday
     - Home [save to git]: Thursday
-    - CompanyList [save to git]: Thursday
-    - CompanyDetail [save to git]: Thursday
+    - CompanyList [save to git]: Friday
+    - CompanyDetail [save to git]: Friday
     - CompanyCard [save to git]: Friday
     - ApplyButton [save to git]: Friday
     - App [save to git]: Friday
@@ -15,6 +14,7 @@ THE REALLY HARD PART
     Deploy frontend on Render
 
 THE FUTURE PART
+- finish any incomplete tests
 - Substitute in my own backend and get it working
     - will need all the application stuff I added
 - Tweak to be accessible for portfolio
