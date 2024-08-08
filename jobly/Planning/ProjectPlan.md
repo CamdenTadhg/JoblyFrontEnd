@@ -1,11 +1,8 @@
 THE REALLY HARD PART
-3) Write tests
-    - Signup Form [save to git]
-        - mocking useNavigate
+3) Write tests 
     - Profile [save to git]
         - not working at all. stuck in loading
     - LoginForm [save to git]
-        - requiresing mocking useNavigate
     - JoblyApi [save to git]
     - JobList [save to git]
     - JobCard [save to git]

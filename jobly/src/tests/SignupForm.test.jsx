@@ -3,18 +3,18 @@ import {test, expect, vi, afterEach, beforeEach} from 'vitest';
 import {MemoryRouter} from 'react-router-dom';
 import * as router from 'react-router'
 import SignupForm from '../SignupForm';
-import JoblyApi from '../JoblyApi';
-import MockAdapter from 'axios-mock-adapter';
-import axios from 'axios';
-
 
 const navigate = vi.fn();
 
-beforeEach(() => {
-  //mock the axios call and useNavigate hook
-  const mock = new MockAdapter(axios);
-  mock.onPost('http://localhost:3001/auth/register').reply(200, 'token');
+const Wrapper = ({children}) => {
+  return (
+    <MemoryRouter>
+      {children}
+    </MemoryRouter>
+  )
+}
 
+beforeEach(() => {
   vi.spyOn(router, 'useNavigate').mockImplementation(() => navigate);
 });
 
@@ -44,28 +44,8 @@ test('displays correct content', () => {
 });
 
 test('gathers and submits form data, redirects on success', async () => {
-  // const mockedUseNavigate = vi.fn();
-  // vi.doMock('react-router-dom', async () => {
-  //     const actual = await vi.importActual('react-router-dom');
-  //     return {
-  //         ...actual,
-  //         useNavigate: () => mockedUseNavigate
-  //     }
-  // });
-    const spySignup = vi.spyOn(JoblyApi, 'signup');
-    const signup = async (data) => {
-        const response = await JoblyApi.signup(data);
-        if (typeof response === 'string'){
-          setToken(response);
-        } else {
-          console.error(response);
-          throw response;
-        }
-      }
-    const {getByText, getByLabelText} = render(
-    <MemoryRouter>
-      <SignupForm signup={signup}/>
-    </MemoryRouter>);
+    const spySignup = vi.fn().mockReturnValue('token');
+    const {getByText, getByLabelText} = render(<SignupForm signup={spySignup}/>, {wrapper: Wrapper});
     fireEvent.change(getByLabelText('Username:'), {target: {value: 'testuser2'}});
     fireEvent.change(getByLabelText('Password:'), {target: {value: 'password'}});
     fireEvent.change(getByLabelText('Retype Password:'), {target: {value: 'password'}});
@@ -75,32 +55,23 @@ test('gathers and submits form data, redirects on success', async () => {
     fireEvent.click(getByText('Submit'));
 
     await waitFor(() => {
-        expect(JoblyApi.signup).toHaveBeenCalledWith({
+        expect(spySignup).toHaveBeenCalledWith({
             username: 'testuser2', 
             password: 'password', 
             firstName: 'Test', 
             lastName: 'User', 
             email: 'testuser@test.com'
         });
-        expect(navigate).toHaveBeenCalledWith('/')
     });
+    expect(navigate).toHaveBeenCalledWith('/')
+
 });
 
 test('displays error message on non-matching passwords', async () => {
-
-    const spySignup = vi.spyOn(JoblyApi, 'signup');
-    const signup = async (data) => {
-        const response = await JoblyApi.signup(data);
-        if (typeof response === 'string'){
-          setToken(response);
-        } else {
-          console.error(response);
-          throw response;
-        }
-      }
+  const spySignup = vi.fn().mockReturnValue('token');
     const {getByText, getByLabelText} = render(
     <MemoryRouter>
-      <SignupForm signup={signup}/>
+      <SignupForm signup={spySignup}/>
     </MemoryRouter>);
     fireEvent.change(getByLabelText('Username:'), {target: {value: 'testuser'}});
     fireEvent.change(getByLabelText('Password:'), {target: {value: 'password'}});

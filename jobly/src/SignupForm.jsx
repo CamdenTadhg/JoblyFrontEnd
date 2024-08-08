@@ -41,10 +41,13 @@ function SignupForm({signup}) {
             const signupData = {username, password, firstName, lastName, email};
             //run signup function
             try{
+                console.log('entering try statement')
                 await signup(signupData);
                 console.log('signup complete')
                 navigate('/');
             } catch (error){
+                console.log('entering error statement')
+                console.log(error);
                 setError(error);
             }
 
