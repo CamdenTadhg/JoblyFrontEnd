@@ -6,7 +6,6 @@ import './CompanyDetail.css';
 import UserContext from './contexts/userContext';
 
 function CompanyDetail(){
-    console.log('rerendering companydetail')
     const [isLoading, setIsLoading] = useState(true);
     const [company, setCompany] = useState({});
     const {handle} = useParams();

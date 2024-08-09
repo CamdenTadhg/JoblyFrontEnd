@@ -1,7 +1,5 @@
 THE REALLY HARD PART
 3) Write tests 
-    - CompanyDetail [save to git]: Friday
-    - CompanyCard [save to git]: Friday
     - ApplyButton [save to git]: Friday
     - App [save to git]: Friday
 1) Deploy on Render: Sunday
