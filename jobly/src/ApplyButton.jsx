@@ -9,7 +9,6 @@ function ApplyButton({applied, jobId}){
     const apply = useContext(ApplyContext);
 
     const handleClick = () => {
-        console.log('starting handle click')
         apply(currentUser, jobId);
         setTempApplied(true);
     }
