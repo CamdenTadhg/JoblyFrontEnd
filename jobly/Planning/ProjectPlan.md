@@ -1,7 +1,5 @@
 THE REALLY HARD PART
 3) Write tests 
-    - Home [save to git]: Thursday
-    - CompanyList [save to git]: Friday
     - CompanyDetail [save to git]: Friday
     - CompanyCard [save to git]: Friday
     - ApplyButton [save to git]: Friday
