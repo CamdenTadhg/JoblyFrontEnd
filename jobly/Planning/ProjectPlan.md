@@ -1,6 +1,5 @@
 THE REALLY HARD PART
 3) Write tests 
-    - ApplyButton [save to git]: Friday
     - App [save to git]: Friday
 1) Deploy on Render: Sunday
     Set up database on Supabase

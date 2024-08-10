@@ -16,7 +16,6 @@ import UserContext from './contexts/userContext';
 import ApplyContext from './contexts/applyContext';
 
 function App() {
-  console.log('rerendering app');
   const initialState = {
     username: '',
     firstName: '',
