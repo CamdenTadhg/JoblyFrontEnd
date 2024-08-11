@@ -1,13 +1,9 @@
 THE REALLY HARD PART
-3) Write tests 
-    - App [save to git]: Friday
-1) Deploy on Render: Sunday
-    Set up database on Supabase
+1) Deploy on Render: Saturday
     Deploy backend on Render
     Deploy frontend on Render
 
 THE FUTURE PART
-- finish any incomplete tests
 - Substitute in my own backend and get it working
     - will need all the application stuff I added
 - Tweak to be accessible for portfolio
